@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 1380" role="img" aria-label="Upshoot Collective">
+  <title>Upshoot Collective</title>
+  <!-- the u: left stem, bowl, rising right stem -->
+  <path class="mark-u" fill="#0E9C8A" d="M0,470 L232,470 L232,934 A208,208 0 0 0 648,934 L648,237 L880,237 L880,934 A440,440 0 0 1 0,934 Z"/>
+  <!-- the leaf: new growth breaking upward -->
+  <path class="mark-leaf" fill="#0A6E63" d="M878,246 C886,120 996,14 1152,2 C1144,142 1036,252 878,246 Z"/>
+  <!-- the dome: embedded in the bowl -->
+  <path class="mark-dome" fill="#0A6E63" d="M272,930 A169,169 0 0 0 610,930 Z"/>
+</svg>
