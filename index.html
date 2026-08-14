@@ -79,7 +79,7 @@
       <div data-stem-probe>
         <span class="label reveal">Embedded social teams · UK</span>
         <h1 class="reveal d1">The team you couldn't afford.<span class="rise">Talent everyone wants.</span></h1>
-        <p class="lede reveal d2">A small, dedicated social team that sits inside your business — writing, filming, posting and growing your audience. Not an agency emailing deliverables from a distance.</p>
+        <p class="lede reveal d2">Hand-picked graduate marketers, embedded in your business, running your social end to end — content, video and real audience growth. They grew up in the platforms your competitors' agencies are still reading about.</p>
         <div class="hero-cta reveal d3">
           <a class="btn btn-primary" data-book
              href="mailto:levi.pike@upshootcollective.com?subject=Upshoot%20—%20I'd%20like%20to%20book%20a%20call&amp;body=Business%3A%0D%0AWhat%20you%20do%3A%0D%0AWhere%20you're%20at%20with%20social%3A%0D%0ABest%20time%20to%20call%3A%0D%0A">Book a call <span class="arr">↗</span></a>
@@ -95,36 +95,41 @@
 
   <!-- ══════════════════════════════════════ TRUSTED BY ═════════════════ -->
   <!--
-    Client logos have been redrawn as single-colour Upshoot ink silhouettes so
-    the row reads as one system instead of four clashing brand palettes.
-    Sources live in assets/img/clients/. To add or swap one:
-      1. Drop the file in assets/img/clients/
-      2. Copy an <li> below, point the src at it, set alt + fallback name
-      3. Set --h to optically balance it against the others (see the CSS note)
-    If an image ever fails to load, the company name shows in type instead.
+    Client logos are redrawn as single-colour Upshoot ink silhouettes so the row
+    reads as one system instead of four clashing brand palettes.
+
+    THE ROW IS A MARQUEE. List each client ONCE below. main.js measures the row,
+    works out how many copies are needed to fill the screen, clones them
+    (marked aria-hidden so screen readers don't repeat them) and sets the scroll
+    distance so the loop is seamless at any window size.
+
+    TO ADD A CLIENT: add one <li> here. Nothing else. Set --h to optically
+    balance it against the others (see the note in style.css).
   -->
   <section class="clients">
     <div class="shell">
       <div class="reveal">
         <span class="label">Trusted by</span>
-        <ul class="client-row">
-          <li class="client" style="--h:30px">
-            <img src="assets/img/clients/yavrio.png" alt="Yavrio" width="685" height="140" loading="lazy">
-            <span class="name">Yavrio</span>
-          </li>
-          <li class="client" style="--h:40px">
-            <img src="assets/img/clients/the-next-revolution.png" alt="The Next Revolution" width="370" height="140" loading="lazy">
-            <span class="name">The Next Revolution</span>
-          </li>
-          <li class="client" style="--h:40px">
-            <img src="assets/img/clients/mysme-leader.png" alt="mySME Leader" width="372" height="140" loading="lazy">
-            <span class="name">mySME Leader</span>
-          </li>
-          <li class="client" style="--h:47px">
-            <img src="assets/img/clients/10-revolutions.png" alt="10 Revolutions Podcast" width="180" height="140" loading="lazy">
-            <span class="name">10 Revolutions</span>
-          </li>
-        </ul>
+        <div class="marquee">
+          <ul class="marquee-track">
+            <li class="client" style="--h:30px">
+              <img src="assets/img/clients/yavrio.png" alt="Yavrio" width="685" height="140">
+              <span class="name">Yavrio</span>
+            </li>
+            <li class="client" style="--h:40px">
+              <img src="assets/img/clients/the-next-revolution.png" alt="The Next Revolution" width="370" height="140">
+              <span class="name">The Next Revolution</span>
+            </li>
+            <li class="client" style="--h:40px">
+              <img src="assets/img/clients/mysme-leader.png" alt="mySME Leader" width="372" height="140">
+              <span class="name">mySME Leader</span>
+            </li>
+            <li class="client" style="--h:47px">
+              <img src="assets/img/clients/10-revolutions.png" alt="10 Revolutions Podcast" width="180" height="140">
+              <span class="name">10 Revolutions</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -135,7 +140,7 @@
       <div class="sec-head reveal" data-stem>
         <span class="label">01 — Why we exist</span>
         <h2>Two broken markets.<br>One fix.</h2>
-        <p class="lede">There's a generation of brilliant young marketers who can't get in the door. And a generation of good small businesses who can't afford them. We put the first inside the second.</p>
+        <p class="lede">There's a generation of brilliant young marketers who can't get in the door. And a generation of good businesses who can't get the reach they need. We put the first inside the second.</p>
       </div>
 
       <div class="gap-grid">
@@ -145,17 +150,19 @@
           <p>Sharp, digital-native, hungry — and shut out of an industry that keeps recycling the same shortlist. The door isn't just narrow. It's closing.</p>
           <div class="stat">
             <div class="num" data-count="33" data-pre="−" data-post="%">−0%</div>
-            <p class="cap">Graduate roles cut in 2025 — the lowest since 2018, and a second straight year of decline.</p>
+            <p class="cap">Fall in UK roles advertised for recent graduates, year on year — the lowest level in seven years.</p>
+            <p class="src">Indeed, 2025</p>
           </div>
         </article>
 
         <article class="gapcard reveal d1">
           <span class="label">The business side</span>
-          <h3>Priced out.</h3>
-          <p>Good companies that have outgrown DIY marketing but can't justify a full salaried hire — so the owner does it in stolen hours, or it doesn't get done.</p>
+          <h3>Stretched thin.</h3>
+          <p>Good companies that already have a marketing person or two — but nobody whose job is social. So it gets squeezed in around everything else, and the reach never compounds.</p>
           <div class="stat">
-            <div class="num" data-count="58" data-post="%">0%</div>
-            <p class="cap">of UK SMEs spend under £250 a month on marketing — about £3,000 a year.</p>
+            <div class="num" data-count="56" data-post="%">0%</div>
+            <p class="cap">of business leaders can't prioritise social — while 75% say it has a clear positive impact. They know what it's worth. They can't sustain it.</p>
+            <p class="src">Verizon, State of Small Business, 2025</p>
           </div>
         </article>
       </div>
@@ -169,7 +176,7 @@
     <div class="shell">
       <div class="sec-head reveal" data-stem>
         <span class="label">02 — What we do</span>
-        <h2>We run your social.<br>Properly.</h2>
+        <h2>We give you a real<br>social presence.</h2>
         <p class="lede">Content, video and active growth across the platforms that matter — run end to end by people who learn your business and post like they're part of it.</p>
       </div>
 
@@ -199,7 +206,7 @@
       <div class="sec-head reveal" data-stem>
         <span class="label">03 — How it works</span>
         <h2>Land light.<br>Grow upward.</h2>
-        <p class="lede">One ladder, priced by what you get — not by the clock. Start where you're comfortable and climb as trust builds: more platforms, more video, more active growth.</p>
+        <p class="lede">Land light — one platform, four posts a week, no long commitment. Then grow upward as it proves itself: more platforms, more video, more active growth. Priced by what you get, not by the clock.</p>
       </div>
 
       <div class="ladder">
