@@ -235,6 +235,59 @@
     });
   }
 
+  /* ========================================================== MARQUEE */
+  // Clone the client row enough times to overflow the viewport, then scroll it
+  // by exactly one set's width. Because every set is identical, the moment it
+  // wraps is invisible. Doing this in JS (rather than hard-coding duplicate
+  // markup) means adding a client is a one-line change in the HTML.
+  var PX_PER_SEC = 44;   // marquee speed. Lower = slower.
+
+  function buildMarquee() {
+    var wrap  = document.querySelector('.marquee');
+    var track = document.querySelector('.marquee-track');
+    if (!wrap || !track) return;
+
+    // Reset any previous build so resize re-measures cleanly
+    [].forEach.call(track.querySelectorAll('[data-clone]'), function (n) {
+      n.parentNode.removeChild(n);
+    });
+    track.classList.remove('running');
+
+    if (reduced) return;   // no motion, no clones
+
+    var originals = [].slice.call(track.children);
+    if (!originals.length) return;
+
+    // Width of one full set, margins included
+    var setWidth = 0;
+    originals.forEach(function (li) {
+      setWidth += li.getBoundingClientRect().width +
+                  parseFloat(getComputedStyle(li).marginRight || 0);
+    });
+    if (setWidth < 10) return;   // images not measured yet
+
+    // We need (total - oneSet) >= visible width, or a gap appears at the wrap.
+    var visible = wrap.getBoundingClientRect().width;
+    var copies  = Math.max(2, Math.ceil(visible / setWidth) + 1);
+
+    for (var c = 1; c < copies; c++) {
+      originals.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.setAttribute('data-clone', '');
+        // decorative duplicates shouldn't be announced or indexed
+        [].forEach.call(clone.querySelectorAll('img'), function (img) {
+          img.setAttribute('alt', '');
+        });
+        track.appendChild(clone);
+      });
+    }
+
+    track.style.setProperty('--shift', setWidth.toFixed(2) + 'px');
+    track.style.setProperty('--dur', (setWidth / PX_PER_SEC).toFixed(2) + 's');
+    track.classList.add('running');
+  }
+
   /* ============================================================== SCROLL */
   var ticking = false;
   function onScroll() {
@@ -244,18 +297,23 @@
   }
 
   /* ================================================================ INIT */
+  function remeasure() { buildMarquee(); buildStem(); }
+
   function init() {
     clientLogos();
     observe();
     navState();
+    buildMarquee();
     buildStem();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', debounce(buildStem, 180));
-    // Re-measure once webfonts have settled — they change section heights.
+    window.addEventListener('resize', debounce(remeasure, 200));
+    // Re-measure once webfonts and images have settled — both change widths
+    // and section heights, which the marquee and the stem depend on.
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () { setTimeout(buildStem, 60); });
+      document.fonts.ready.then(function () { setTimeout(remeasure, 60); });
     }
-    setTimeout(buildStem, 1200);
+    window.addEventListener('load', function () { setTimeout(remeasure, 40); });
+    setTimeout(remeasure, 1200);
   }
 
   if (document.readyState === 'loading') {
