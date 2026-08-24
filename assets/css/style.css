@@ -311,8 +311,21 @@ main, .site-nav, .site-footer{ position:relative; z-index:1; }
 .nav-links .btn{ padding:.62em 1.15em; font-size:.92rem; color:#fff; }
 .nav-links .btn:hover{ color:#fff; }
 @media (max-width:680px){
+  /* Hide same-page anchors on small screens — you scroll past those sections
+     anyway. Keep links to OTHER pages visible, because the footer is the only
+     other route to them. */
   .nav-links a.hide-sm{ display:none; }
+  .nav-links a.hide-sm[href*="story"]{ display:inline-block; }
   .brand span{ display:none; }
+  .nav-links{ gap:14px; }
+  .nav-links a{ font-size:.9rem; }
+  .nav-links .btn{ padding:.6em 1em; font-size:.88rem; }
+}
+@media (max-width:400px){
+  .nav-links{ gap:10px; }
+  .nav-links a{ font-size:.85rem; }
+  .nav-links .btn{ padding:.58em .9em; font-size:.84rem; }
+  .nav-inner{ padding-inline:14px; }
 }
 
 /* ==========================================================================
